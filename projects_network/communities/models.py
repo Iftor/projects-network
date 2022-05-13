@@ -16,7 +16,9 @@ class Community(models.Model):
     participants = models.ManyToManyField(
         to='users.User',
         through='communities.CommunityParticipant',
-        through_fields=('community', 'participant')
+        through_fields=('community', 'participant'),
+        related_name='communities',
+        verbose_name='Participants',
     )
 
     def __str__(self):
