@@ -10,13 +10,15 @@ class Community(models.Model):
         to='users.User',
         on_delete=models.SET_NULL,
         null=True,
-        related_name='communities',
+        related_name='created_communities',
         verbose_name='Creator',
     )
     participants = models.ManyToManyField(
         to='users.User',
         through='communities.CommunityParticipant',
-        through_fields=('community', 'participant')
+        through_fields=('community', 'participant'),
+        related_name='communities',
+        verbose_name='Participants',
     )
 
     def __str__(self):
