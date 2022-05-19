@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'communities.apps.CommunitiesConfig',
     'projects.apps.ProjectsConfig',
     'users.apps.UsersConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
