@@ -4,9 +4,9 @@ from django.db import models
 class Project(models.Model):
     name = models.CharField(max_length=30, unique=True, verbose_name='Name')
     description = models.TextField(null=True, default=None, verbose_name='Description')
-    beginning_date = models.DateField(auto_now_add=True, verbose_name='Beginning date')
+    beginning_date = models.DateField(auto_now_add=True, blank=True, verbose_name='Beginning date')
     deadline = models.DateField(null=True, default=None, verbose_name='Deadline')
-    end_date = models.DateField(null=True, default=None, verbose_name='End date')
+    end_date = models.DateField(null=True, default=None, blank=True, verbose_name='End date')
     community = models.ForeignKey(
         to='communities.Community',
         on_delete=models.CASCADE,
@@ -72,9 +72,9 @@ class ProjectRole(models.Model):
 class Task(models.Model):
     title = models.TextField(verbose_name='Title')
     description = models.TextField(null=True, default=None, verbose_name='Description')
-    creating_date = models.DateTimeField(auto_now_add=True, verbose_name='Creating date')
+    creating_date = models.DateTimeField(auto_now_add=True, blank=True, verbose_name='Creating date')
     deadline = models.DateField(null=True, default=None, verbose_name='Deadline')
-    end_date = models.DateField(null=True, default=None, verbose_name='End date')
+    end_date = models.DateField(null=True, default=None, blank=True, verbose_name='End date')
     status = models.ForeignKey(
         to='base.Status',
         on_delete=models.SET_NULL,
