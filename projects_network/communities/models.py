@@ -38,6 +38,6 @@ class CommunityParticipant(models.Model):
         return f'{self.participant} in {self.community}'
 
     class Meta:
-        verbose_name = 'Community Participant'
-        verbose_name_plural = 'Communities Participants'
+        verbose_name = 'Community participant'
+        verbose_name_plural = 'Communities participants'
         unique_together = ['community', 'participant']
