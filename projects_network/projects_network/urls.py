@@ -22,3 +22,5 @@ urlpatterns = [
     path('auth/', include('djoser.urls.authtoken')),
     path('communities/', include('communities.urls')),
 ]
+
+urlpatterns = [path("api/", include(urlpatterns))]
