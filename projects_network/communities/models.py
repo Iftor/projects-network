@@ -2,7 +2,8 @@ from django.db import models
 
 
 class Community(models.Model):
-    name = models.CharField(max_length=30, unique=True, verbose_name='Name')
+    custom_id = models.CharField(max_length=30, unique=True, verbose_name='Custom id')
+    name = models.CharField(max_length=100, unique=True, verbose_name='Name')
     description = models.TextField(null=True, verbose_name='Description')
     creating_date = models.DateField(auto_now_add=True, blank=True, verbose_name='Creating date')
     creator = models.ForeignKey(

@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=30, unique=True, verbose_name='Name')
+    name = models.CharField(max_length=100, unique=True, verbose_name='Name')
     description = models.TextField(null=True, default=None, verbose_name='Description')
     beginning_date = models.DateField(auto_now_add=True, blank=True, verbose_name='Beginning date')
     deadline = models.DateField(null=True, default=None, verbose_name='Deadline')
