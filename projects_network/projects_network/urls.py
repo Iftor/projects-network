@@ -21,6 +21,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls')),
     path('communities/', include('communities.urls')),
     path('users/', include('users.urls')),
+    path('projects/', include('projects.urls')),
 ]
 
 urlpatterns = [path("api/", include(urlpatterns))]
