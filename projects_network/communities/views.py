@@ -6,3 +6,7 @@ from .serializers import CommunitySerializer
 class CommunityViewSet(viewsets.ModelViewSet):
     queryset = Community.objects.all()
     serializer_class = CommunitySerializer
+
+    def perform_create(self, serializer):
+        print(self.request.user)
+        serializer.save(creator=self.request.user)
