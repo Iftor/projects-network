@@ -18,7 +18,7 @@ class Login(GenericAPIView):
     def post(self, request):
         if self.request.user.is_authenticated:
             raise ValidationError()
-        serializer = self.get_serializer()(data=request.data)
+        serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         username = serializer.data.get("username")
         password = serializer.data.get("password")

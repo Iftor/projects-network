@@ -8,5 +8,4 @@ class CommunityViewSet(viewsets.ModelViewSet):
     serializer_class = CommunitySerializer
 
     def perform_create(self, serializer):
-        print(self.request.user)
         serializer.save(creator=self.request.user)
