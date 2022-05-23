@@ -26,7 +26,6 @@ class Login(GenericAPIView):
 
         if user is not None:
             login(request, user)
-
             return Response("Success")
         else:
             return Response(
