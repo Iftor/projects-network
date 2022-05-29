@@ -63,7 +63,10 @@ class CheckAuthenticated(APIView):
         try:
             authenticated = request.user.is_authenticated
             if authenticated:
-                return Response({'authenticated': 'true'})
+                return Response({
+                    'authenticated': 'true',
+                    'username': request.user.username
+                })
             else:
                 return Response({'authenticated': 'false'})
         except Exception:
