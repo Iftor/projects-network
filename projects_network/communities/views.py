@@ -13,8 +13,7 @@ class CommunityViewSet(viewsets.ModelViewSet):
     authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def perform_create(self, serializer):
-        print(self.request.user)
-        serializer.save(creator_id=1)
+        serializer.save(creator=self.request.user)
 
 
 class JoinCommunityView(APIView):
