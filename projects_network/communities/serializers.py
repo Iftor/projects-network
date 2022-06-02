@@ -4,6 +4,7 @@ from .models import Community
 
 
 class CommunitySerializer(serializers.ModelSerializer):
+    creator = serializers.SlugRelatedField(slug_field='username', read_only=True)
     auth_user_participation = serializers.SerializerMethodField()
     auth_user_is_creator = serializers.SerializerMethodField()
 
