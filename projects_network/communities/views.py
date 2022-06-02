@@ -1,10 +1,12 @@
 from rest_framework import viewsets, status
 from rest_framework.authentication import BasicAuthentication
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from session_authentication.session_authenticated import CsrfExemptSessionAuthentication
 from .models import Community
 from .serializers import CommunitySerializer
+from users.serializers import UserSerializer
 
 
 class CommunityViewSet(viewsets.ModelViewSet):
@@ -48,3 +50,11 @@ class LeaveCommunityView(APIView):
                 {"non_field_errors": ["error"]},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+
+class CommunityParticipants(ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        community_id = self.kwargs.get('community_id')
+        return Community.objects.get(id=community_id).participants.all()
