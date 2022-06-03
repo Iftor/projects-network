@@ -1,5 +1,8 @@
+from rest_framework import status
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from session_authentication.session_authenticated import CsrfExemptSessionAuthentication
 from .models import Project
@@ -30,3 +33,20 @@ class CreateProjectView(CreateAPIView):
     def perform_create(self, serializer):
         community_id = self.kwargs.get('community_id')
         serializer.save(community_id=community_id)
+
+
+class JoinProjectView(APIView):
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
+
+    def post(self, request, project_id):
+        try:
+            user = request.user
+            project = Project.objects.get(id=project_id)
+            project.participants.add(user)
+
+            return Response('success')
+        except:
+            return Response(
+                {"non_field_errors": ["error"]},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
