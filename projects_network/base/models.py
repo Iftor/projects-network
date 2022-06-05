@@ -1,8 +1,13 @@
 from django.db import models
 
 
+class StatusConst:
+    IN_PROCESS = "In process"
+    DONE = "Done"
+
+
 class Technology(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Name')
+    name = models.CharField(max_length=30, verbose_name='Name', unique=True)
 
     def __str__(self):
         return self.name
@@ -13,7 +18,7 @@ class Technology(models.Model):
 
 
 class Status(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Name')
+    name = models.CharField(max_length=30, verbose_name='Name', unique=True)
 
     def __str__(self):
         return self.name
