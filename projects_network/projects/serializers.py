@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
-from .models import Project
+from .models import Project, Task
 
 
 class ProjectSerializer(ModelSerializer):
@@ -26,3 +26,18 @@ class CreateProjectSerializer(ModelSerializer):
     class Meta:
         model = Project
         fields = ('name', 'description', 'deadline')
+
+
+class CreateTaskSerializer(ModelSerializer):
+
+    class Meta:
+        model = Task
+        fields = ('title', 'description', 'deadline')
+
+
+class TasksListSerializer(ModelSerializer):
+    creator = serializers.SlugRelatedField(slug_field='username', read_only=True)
+
+    class Meta:
+        model = Task
+        fields = ('id', 'title', 'description', 'deadline', 'creator')
